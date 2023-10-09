@@ -1,19 +1,19 @@
 import os
 import time
-
-i = 0
+i = 1
 
 def ChangeFolders(extension,extensionFolder):
-    source = "C:\\Users\\Gustavo Santos\\Downloads"
+    userLogin = os.environ.get("USERNAME")
+    parentDirectory = "Downloads"
+    source = os.path.join("C:/users",userLogin,parentDirectory)
     files = [x for x in os.listdir(source) if x.endswith(extension)]
 
-    destination = "C:\\Users\\Gustavo Santos\\Downloads\\{}".format(extensionFolder)
+    destination = os.path.join("C:/users",userLogin,parentDirectory,extensionFolder)
 
     for file in files:
         src_path = os.path.join(source, file)
         dst_path = os.path.join(destination , file)
         os.rename (src_path , dst_path)
-
 
 def createFolder():
     i = 0
@@ -21,7 +21,7 @@ def createFolder():
     parentDirectory = "Downloads"
     
     while (i != 1):
-        for j in range(5):
+        for j in range(6):
             match j:
                 case 1:
                     folderName = "Rar"
@@ -43,35 +43,24 @@ def createFolder():
                     path = os.path.join("C:/users",userLogin,parentDirectory,folderName)
                     if (os.path.isdir(path) != True):
                         os.mkdir(path)
-    
-    
+                case 5:
+                    i = 1
+      
 createFolder()
 
-while (i != 1):
-    for j in range(15):
-        match j:
-            case 1:
-                ChangeFolders(extension=".rar",extensionFolder="Rar")
-            case 2:
-                ChangeFolders(extension=".exe",extensionFolder="Exe")
-            case 3:
-                ChangeFolders(extension=".zip",extensionFolder="Rar")
-            case 4:
-                ChangeFolders(extension=".pdf",extensionFolder="Documents")
-            case 5:
-                ChangeFolders(extension=".docx",extensionFolder="Documents")
-            case 6:
-                ChangeFolders(extension=".txt",extensionFolder="Documents")
-            case 7:
-                ChangeFolders(extension=".7z",extensionFolder="Rar")
-            case 8:
-                ChangeFolders(extension=".zip",extensionFolder="Rar")
-            case 9:
-                ChangeFolders(extension=".png",extensionFolder="Images")
-            case 10:
-                ChangeFolders(extension=".jpg",extensionFolder="Images")
-            case 11:
-                ChangeFolders(extension=".jpeg",extensionFolder="Images")
+while (i != 0):
+
+    ChangeFolders(extension=".rar",extensionFolder="Rar")
+    ChangeFolders(extension=".exe",extensionFolder="Exe")
+    ChangeFolders(extension=".zip",extensionFolder="Rar")
+    ChangeFolders(extension=".pdf",extensionFolder="Documents")
+    ChangeFolders(extension=".docx",extensionFolder="Documents")
+    ChangeFolders(extension=".txt",extensionFolder="Documents")
+    ChangeFolders(extension=".7z",extensionFolder="Rar")
+    ChangeFolders(extension=".zip",extensionFolder="Rar")
+    ChangeFolders(extension=".png",extensionFolder="Images")
+    ChangeFolders(extension=".jpg",extensionFolder="Images")
+    ChangeFolders(extension=".jpeg",extensionFolder="Images")
     time.sleep(1800)
     
 
