@@ -3,12 +3,12 @@ import time
 i = 1
 
 def ChangeFolders(extension,extensionFolder):
-    userLogin = os.environ.get("USERNAME")
+    userLogin = os.path.expanduser('~')
     parentDirectory = "Downloads"
-    source = os.path.join("C:/users",userLogin,parentDirectory)
+    source = os.path.join("C:\\users",userLogin,parentDirectory)
     files = [x for x in os.listdir(source) if x.endswith(extension)]
 
-    destination = os.path.join("C:/users",userLogin,parentDirectory,extensionFolder)
+    destination = os.path.join("C:\\users",userLogin,parentDirectory,extensionFolder)
 
     for file in files:
         src_path = os.path.join(source, file)
@@ -17,34 +17,27 @@ def ChangeFolders(extension,extensionFolder):
 
 def createFolder():
     i = 0
-    userLogin = os.environ.get("USERNAME")
+    userLogin = os.path.expanduser('~')
     parentDirectory = "Downloads"
     
     while (i != 1):
-        for j in range(6):
-            match j:
-                case 1:
-                    folderName = "Rar"
-                    path = os.path.join("C:/users",userLogin,parentDirectory,folderName)
-                    if (os.path.isdir(path) != True):
-                        os.mkdir(path)
-                case 2:
-                    folderName = "Images"
-                    path = os.path.join("C:/users",userLogin,parentDirectory,folderName)
-                    if (os.path.isdir(path) != True):
-                        os.mkdir(path)
-                case 3:
-                    folderName = "Exe"
-                    path = os.path.join("C:/users",userLogin,parentDirectory,folderName)
-                    if (os.path.isdir(path) != True):
-                        os.mkdir(path)
-                case 4:
-                    folderName = "Documents"
-                    path = os.path.join("C:/users",userLogin,parentDirectory,folderName)
-                    if (os.path.isdir(path) != True):
-                        os.mkdir(path)
-                case 5:
-                    i = 1
+        folderName = "Rar"
+        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
+        if (os.path.isdir(path) != True):
+            os.mkdir(path)
+        folderName = "Images"
+        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
+        if (os.path.isdir(path) != True):
+            os.mkdir(path)
+        folderName = "Exe"
+        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
+        if (os.path.isdir(path) != True):
+            os.mkdir(path)
+        folderName = "Documents"
+        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
+        if (os.path.isdir(path) != True):
+            os.mkdir(path)
+        i = 1
       
 createFolder()
 
