@@ -1,8 +1,7 @@
 import os
 import time
-i = 1
 
-def ChangeFolders(extension,extensionFolder):
+def organizeFiles(extension,extensionFolder):
     userLogin = os.path.expanduser('~')
     parentDirectory = "Downloads"
     source = os.path.join("C:\\users",userLogin,parentDirectory)
@@ -16,45 +15,25 @@ def ChangeFolders(extension,extensionFolder):
         os.rename (src_path , dst_path)
 
 def createFolder():
-    i = 0
     userLogin = os.path.expanduser('~')
     parentDirectory = "Downloads"
-    
-    while (i != 1):
-        folderName = "Rar"
-        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
-        if (os.path.isdir(path) != True):
-            os.mkdir(path)
-        folderName = "Images"
-        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
-        if (os.path.isdir(path) != True):
-            os.mkdir(path)
-        folderName = "Exe"
-        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
-        if (os.path.isdir(path) != True):
-            os.mkdir(path)
-        folderName = "Documents"
-        path = os.path.join("C:\\users",userLogin,parentDirectory,folderName)
-        if (os.path.isdir(path) != True):
-            os.mkdir(path)
-        i = 1
-      
-createFolder()
 
-while (i != 0):
+    folderName = ["Rar","Images","Executables","Documents","Code"]
+    for folder in folderName:
+        path = os.path.join("C:\\users",userLogin,parentDirectory,folder)
+        if (os.path.isdir(path) != True):
+            os.mkdir(path)    
 
-    ChangeFolders(extension=".rar",extensionFolder="Rar")
-    ChangeFolders(extension=".exe",extensionFolder="Exe")
-    ChangeFolders(extension=".zip",extensionFolder="Rar")
-    ChangeFolders(extension=".pdf",extensionFolder="Documents")
-    ChangeFolders(extension=".docx",extensionFolder="Documents")
-    ChangeFolders(extension=".txt",extensionFolder="Documents")
-    ChangeFolders(extension=".7z",extensionFolder="Rar")
-    ChangeFolders(extension=".zip",extensionFolder="Rar")
-    ChangeFolders(extension=".png",extensionFolder="Images")
-    ChangeFolders(extension=".jpg",extensionFolder="Images")
-    ChangeFolders(extension=".jpeg",extensionFolder="Images")
-    time.sleep(1800)
-    
+
+if __name__ == "__main__":  
+    createFolder()
+    extensions = [(".rar","Rar"),(".zip","Rar"),(".7z","Rar"),(".exe","Executables"),(".jar","Code"),(".py","Code"),(".pdf","Documents"),
+                  (".docx","Documents"),(".txt","Documents"),(".png","Images"),(".jpg","Images"),(".jpeg","Images")]
+    while (True):
+        for(extension,folder) in extensions:
+            organizeFiles(extension,folder)
+
+        time.sleep(1800)
+        
 
     
